@@ -1,0 +1,19 @@
+This program demonstrates the basic principles of evolution and natural selection.
+
+The Evolution 1.0 Alpha creates unicellular organisms with DNA, encoding 3 genes: sufficient oxygen, food and water. At the same time environment may meet animal's requirements, or may not. If it doesn't, creature dies, but if it does, creature lives and creates its own copy. Creatures multiply on agamobium principle with only one child. In fact the creature, survived more than 1 generation, also can survive one more generation in not acceptable conditions, but it can not multiply any more.
+
+The ID of the creature consists of 3 items: Name, DNA, age. DNA contains 3-digit code, which shows creature's requirements to the environment conditions, for example: 
+
+(Darwin|203|Age:4)
+
+This record means: creature belongs to Darwin dynasty, it can live in the conditions with 2 oxygen, 0 food and 3 water; his age is 4 generations.
+
+Each creature cannot live more than 6 generations.
+
+If start conditions are hard (for example, water level = 1 and food level = 2), there is a good chance for popuation to be destroyed. But if the program gives hard but steady conditions, the creatures' genes can change a bit, but it would be enough for population to survive and multiply in more extreme conditions.
+
+The program stops if amoung of creatures is more, than 5000, and in the end it shows the list of survived dynasties.
+
+In this very alpha version the creatures doesn't interact with environment, but if we consider this special evolution as a process in some closed system of global environment, it would make a sense.
+
+p.s. sometimes you may see the creatures, named: (null|000|age:0) - THEY ARE GHOSTS!
