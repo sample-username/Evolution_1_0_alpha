@@ -1,6 +1,6 @@
 This program demonstrates the basic principles of evolution and natural selection.
 
-The Evolution 1.0 Alpha creates unicellular organisms with DNA, encoding 3 genes: sufficient oxygen, food and water. At the same time environment may meet animal's requirements, or may not. If it doesn't, creature dies, but if it does, creature lives and creates its own copy. Creatures multiply on agamobium principle with only one child. In fact the creature, survived more than 1 generation, also can survive one more generation in not acceptable conditions, but it can not multiply any more.
+The Evolution 1.0 Alpha creates unicellular organisms with DNA, encoding 3 genes: sufficient oxygen, food and water. At the same time environment may meet animal's requirements, or may not. If it doesn't, creature dies, but if it does, creature lives and creates its own copy. Creatures multiply on agamobium principle with only one child.
 
 The ID of the creature consists of 3 items: Name, DNA, age. DNA contains 3-digit code, which shows creature's requirements to the environment conditions, for example: 
 

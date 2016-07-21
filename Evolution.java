@@ -134,7 +134,7 @@ class Environment {
 }
 class Evolution {
 	public static void main(String args[]) throws java.io.IOException, InterruptedException {
-		int gen = 0, age = 0, ox, size, legs, ox_level=1, food_level=1, landscape_compl=1, arr_pos = 0, arr_died_pos = 0, survived = 0, died = 0;
+		int gen = 0, age = 0, ox, size, legs, ox_level = 1, food_level = 1, landscape_compl = 1, arr_pos = 0, arr_died_pos = 0, survived = 0, died = 0;
 		int[][] arr_DNA = new int[1000000][4];
 		int[][] arr_DNA2 = new int[1000000][4];
 		int[][] arr_DIED = new int[1000000][4];
@@ -165,13 +165,13 @@ class Evolution {
 
 			Random randOx = new Random();
 			ox = randOx.nextInt(9);
-			if (ox == 0) ox++;
+			//if (ox == 0) ox++;
 			Random randSize = new Random();
 			size = randSize.nextInt(9);
-			if (size == 0) size++;
+			//if (size == 0) size++;
 			Random randLegs = new Random();
 			legs = randLegs.nextInt(9);
-			if (legs == 0) legs++;
+			//if (legs == 0) legs++;
 			
 
 			
@@ -181,7 +181,20 @@ class Evolution {
 				arr_DNA[arr_pos][1] = size;
 				arr_DNA[arr_pos][2] = legs;
 				arr_DNA[arr_pos][3] = gen;
+				/*int j = 0;
+				while (arr_NAMES[j] == proconsul.lastname & j < arr_pos) {
+					proconsul.CreateLastname();
+					j++;
 				arr_NAMES[arr_pos] = proconsul.lastname;
+				}*/
+				arr_NAMES[arr_pos] = proconsul.lastname;
+
+				/*for (int j = 0; j++; j < arr_pos) {
+					if (arr_NAMES[j] != proconsul.lastname) arr_NAMES[arr_pos] = proconsul.lastname;
+					else {
+						proconsul.CreateLastname();
+					}
+				}*/
 				arr_pos++;
 				
 			}
@@ -254,8 +267,8 @@ class Evolution {
 		System.out.println(" Environment\nOxygen level: " + env.ox_level + ", Food level: " + env.food_level + ", Water level: " + env.landscape_compl);
 		System.out.println();
 		Thread.sleep(3000);
-		System.out.println("GENERATION " + gen + ":");
-		Thread.sleep(3000);
+//		System.out.println("GENERATION " + gen + ":");
+//		Thread.sleep(3000);
 
 //==============2nd 'for' for 2nd generation:
 		
@@ -267,77 +280,58 @@ class Evolution {
 			anml.ChangeAnimal(arr_DNA[i][0], arr_DNA[i][1], arr_DNA[i][2]);
 			//anml.CreateLastname();
 			
-			
+			if (arr_DNA[i][0] <= env.ox_level & arr_DNA[i][1] <= env.food_level & arr_DNA[i][2] <= env.landscape_compl & arr_DNA[i][3] < 6) { 
+
+				arr_DNA2[arr_pos][0] = arr_DNA[i][0];
+				arr_DNA2[arr_pos][1] = arr_DNA[i][1];
+				arr_DNA2[arr_pos][2] = arr_DNA[i][2];				
+				arr_DNA2[arr_pos][3] = arr_DNA[i][3] + 1;
+				arr_NAMES2[arr_pos] = arr_NAMES[i];
+				arr_pos++;
+
+//==============================Not sure if I won't use it someday:
+				/*arr_DNA2[arr_pos][0] = anml.ox;
+				arr_DNA2[arr_pos][1] = anml.size;
+				arr_DNA2[arr_pos][2] = anml.legs;				
+				arr_DNA2[arr_pos][3] = age;
+				arr_pos++;*/
+
+			}
+			else {
+				arr_DIED[arr_died_pos][0] = arr_DNA[i][0];
+				arr_DIED[arr_died_pos][1] = arr_DNA[i][1];
+				arr_DIED[arr_died_pos][2] = arr_DNA[i][2];
+				arr_DIED[arr_died_pos][3] = arr_DNA[i][3] + 1;
+				arr_DIED_NAMES[arr_died_pos] = arr_NAMES[i];
+				arr_died_pos++;
+			}
 
 			if (anml.ox <= env.ox_level & anml.size <= env.food_level & anml.legs <= env.landscape_compl) {
-				if (arr_DNA[i][3] > 5) {
-					arr_DIED[arr_died_pos][0] = arr_DNA[i][0];
-					arr_DIED[arr_died_pos][1] = arr_DNA[i][1];
-					arr_DIED[arr_died_pos][2] = arr_DNA[i][2];
-					arr_DIED[arr_died_pos][3] = arr_DNA[i][3];
-					arr_DIED_NAMES[arr_died_pos] = arr_NAMES[i];
-					arr_died_pos++;
-//======================================Not sure if I won't use it someday:
-					/*arr_DNA2[arr_pos][0] = anml.ox;
-					arr_DNA2[arr_pos][1] = anml.size;
-					arr_DNA2[arr_pos][2] = anml.legs;				
-					arr_DNA2[arr_pos][3] = age;
-					arr_pos++;*/
-
-				}
-				else { 
-						if (arr_DNA[i][0] <= env.ox_level & arr_DNA[i][1] <= env.food_level & arr_DNA[i][2] <= env.landscape_compl) {
-							arr_DNA2[arr_pos][0] = arr_DNA[i][0];
-							arr_DNA2[arr_pos][1] = arr_DNA[i][1];
-							arr_DNA2[arr_pos][2] = arr_DNA[i][2];				
-							arr_DNA2[arr_pos][3] = arr_DNA[i][3]+1;
-							arr_NAMES2[arr_pos] = arr_NAMES[i];
-						}
-					arr_DNA2[arr_pos+1][0] = anml.ox;
-					arr_DNA2[arr_pos+1][1] = anml.size;
-					arr_DNA2[arr_pos+1][2] = anml.legs;				
-					arr_DNA2[arr_pos+1][3] = age;
-					arr_NAMES2[arr_pos+1] = arr_NAMES[i];
-					arr_pos+=2;	
-					
-	
-				}
 				
+				arr_DNA2[arr_pos][0] = anml.ox;
+				arr_DNA2[arr_pos][1] = anml.size;
+				arr_DNA2[arr_pos][2] = anml.legs;				
+				arr_DNA2[arr_pos][3] = age;
+				arr_NAMES2[arr_pos] = arr_NAMES[i];
+				arr_pos++;	
 			}
 			else {
 				arr_DIED[arr_died_pos][0] = anml.ox;
 				arr_DIED[arr_died_pos][1] = anml.size;
 				arr_DIED[arr_died_pos][2] = anml.legs;
-				arr_DIED[arr_died_pos][3] = /*age*/arr_DNA[i][3];
+				arr_DIED[arr_died_pos][3] = age;
 				arr_DIED_NAMES[arr_died_pos] = arr_NAMES[i];
 				arr_died_pos++;
 			
 			}
-/*			if (arr_pos == 200000) {
-				int s_ = 0;
-				for (int s = 0; s < 200000; s++) {
-						 
-					
-					while (arr_NAMES[s] != arr_NAMES[s+1]) {
-						arr_SURVIVED[s_] = arr_NAMES[s];
-						s_++;
-					}
-				}
-				
-				System.out.println("The population survived!");
-				System.out.println("They did survive for " + gen + " generations:");
-				for (int s = 0; s < s_; s++) System.out.println(arr_SURVIVED[s]);
-				break exit;
-				
-			}*/
-		anml.randname = 0;
+
 
 		}
 
 
 		survived = arr_pos;
 
-//==============Copying items from array arr_DNA2 to array arr_DNA1:
+//==============Copying items from array arr_DNA2 to array arr_DNA:
 		for (int i = 0; i < survived; i++) {
 			for (int j = 0; j < 4; j++) {
 				arr_DNA[i][j] = arr_DNA2[i][j];
@@ -357,7 +351,10 @@ class Evolution {
 		}
 
 		else {
+			System.out.println("GENERATION " + gen + ":");
+			Thread.sleep(1500);
 			System.out.println(" Survived DNAs: ");
+			Thread.sleep(1500);
 			for (int i = 0; i < survived; i++) {
 				if (survived < 150) Thread.sleep(250);
 				else if (survived > 150 & survived < 300) Thread.sleep(150);
@@ -378,7 +375,7 @@ class Evolution {
 		System.out.print("\nTotal: " + survived);
 		System.out.println();
 		Thread.sleep(3000);
-		if (arr_died_pos == 0) System.out.println ("No one died!");
+		if (arr_died_pos == 0) System.out.println (" No one died!");
 		else {
 
 			System.out.println(" RIP: ");
